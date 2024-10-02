@@ -14,9 +14,14 @@ export default {
   methods: {
     formatComputerWord(number) {
       const stringNumber = number.toString();
-      if (number % 10 === 1) {
+      if (number % 10 === 1 && number !== 11) {
         return `${stringNumber} компьютер`
-      } else if (number % 10 > 1 && number % 10 < 5) {
+      } else if (
+        number % 10 > 1 && 
+        number % 10 < 5 &&
+        (number < 5 || 
+        number > 20)
+      ) {
         return `${stringNumber} компьютера`
       } else {
         return `${stringNumber} компьютеров`
@@ -87,32 +92,31 @@ export default {
     }
   },
   mounted() {
-    const computersNumber = +prompt('Задача #1. Количество компьютеров', 0)
+    const computersNumber = +prompt('Задача #1. Укажите количество компьютеров в цифрах', 0)
     const formatedWord = this.formatComputerWord(computersNumber)
     console.group('Задача #1. Существительное с числительным в И.п.')
     console.log('Ответ: ', formatedWord);
     console.groupEnd();
 
     const numbersArray = []
-    let number = +prompt('Задача #2. Добавляем число в массив. Чтобы перейти к следующей задаче, нажмите на "Cancel"', 0);
+    let number = +prompt('Задача #2. Общие делители. Добавляем число в массив. Чтобы перейти к следующей задаче, нажмите на "Cancel"', 0);
     while (number > 0) {
       numbersArray.push(number);
-      number = +prompt('Задача #2. Добавляем число в массив. Чтобы перейти к следующей задаче, нажмите на "Cancel"', 0);
+      number = +prompt('Задача #2. Общие делители. Добавляем число в массив. Чтобы перейти к следующей задаче, нажмите на "Cancel"', 0);
     }
-
     const commonDivisors = this.findCommonDivisors(numbersArray)
-    console.group('Задача #2')
+    console.group('Задача #2. Массив чисел, которые являются общими делителями для всех указанных чисел.')
     console.log('Ответ: ', commonDivisors);
     console.groupEnd();
 
-    const beginningRange = +prompt('Задача #3. Введите минимальное число для диапазона', 0)
-    const endingRange = +prompt('Задача #3. Введите максимальное число для диапазона', 0)
+    const beginningRange = +prompt('Задача #3. Простые числа. Введите минимальное число для диапазона', 0)
+    const endingRange = +prompt('Задача #3. Простые числа. Введите максимальное число для диапазона', 0)
     const primesInRange = this.getPrimesInRange(beginningRange, endingRange);
     console.group(`Задача #3. Простые числа в диапазоне от ${beginningRange} до ${endingRange}`)
     console.log('Ответ: ', primesInRange);
     console.groupEnd();
 
-    const sizeMultiplicationTable = +prompt('Размер Таблицы умножения', 0);
+    const sizeMultiplicationTable = +prompt('Укажите размер таблицы умножения', 0);
     console.group('Задача #4. Таблица умножения')
     this.printMultiplicationTable(sizeMultiplicationTable);
     console.groupEnd();
