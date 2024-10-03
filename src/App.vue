@@ -1,6 +1,9 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img
+    alt="Vue logo"
+    src="./assets/logo.png"
+  >
+  <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
 <script>
@@ -17,10 +20,10 @@ export default {
       if (number % 10 === 1 && number !== 11) {
         return `${stringNumber} компьютер`
       } else if (
-        number % 10 > 1 && 
+        number % 10 > 1 &&
         number % 10 < 5 &&
-        (number < 5 || 
-        number > 20)
+        (number < 5 ||
+          number > 20)
       ) {
         return `${stringNumber} компьютера`
       } else {
@@ -31,7 +34,7 @@ export default {
       const minNumb = numbersArray.sort((a, b) => a - b)[0]
       const result = [];
 
-      for (let index = 2; index < minNumb; index++) {
+      for (let index = 2; index <= minNumb; index++) {
         const divisibleArray = numbersArray.filter(function (item) {
           return item % index === 0;
         })
@@ -45,12 +48,15 @@ export default {
     },
     getPrimesInRange(start, end) {
       const result = [];
-      let index = start === 1 ? 2 : start;
+      let index = (start === 0 || start === 1) ? 2 : start;
       for (; index < end; index++) {
         const number = index;
         let isPrime = true;
         for (let j = 2; j < number; j++) {
-          if (number % j === 0) {
+          if (number % j === 0 ||
+            number === 0 ||
+            number === 1
+          ) {
             isPrime = false;
             break;
           }
